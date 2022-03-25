@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
@@ -19,7 +20,9 @@ public class LoginServlet extends HttpServlet {
         UserDao u = new UserDao();
         User user = u.login(user_tno,user_pass);
         if (user != null){
-            response.sendRedirect(request.getContextPath()+"/Backstage management.jsp?userName="+user.getUser_tno());
+            HttpSession session = request.getSession();
+            session.setAttribute("user",user);
+            response.sendRedirect(request.getContextPath()+"/Backstage management.jsp");
         }else{
             request.setAttribute("message", "账号密码错误，请重新登录<br>");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
