@@ -39,7 +39,7 @@ public class DbUtils {
         return connection;
     }
 
-    public static void close(ResultSet rs, Statement stat, Connection conn){
+    public static void close(Connection conn,Statement stat,ResultSet rs){
         try {
             if(rs!=null){
                 rs.close();
