@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
         if (user != null){
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
-            response.sendRedirect(request.getContextPath()+"/Backstage management.jsp");
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
         }else{
             request.setAttribute("message", "账号密码错误，请重新登录<br>");
             request.getRequestDispatcher("/login.jsp").forward(request, response);

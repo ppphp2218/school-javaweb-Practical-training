@@ -1,6 +1,7 @@
 package com.dashuju1.DbUtils;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +17,10 @@ public class DbUtils {
 
     static {
         try {
-            FileInputStream is = new FileInputStream("config/dbcp.properties");
-            properties.load(is);
+            //FileInputStream is = new FileInputStream("F:\\study\\javaweb\\workspace\\java-web-job\\src\\dbcp.properties");
+            InputStream resourceAsStream = DbUtils.class.getClassLoader().getResourceAsStream("dbcp.properties");
+            System.out.println(resourceAsStream);
+            properties.load(resourceAsStream);
             dataSource = BasicDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
             e.printStackTrace();

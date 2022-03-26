@@ -1,5 +1,7 @@
 package com.dashuju1.Filter;
 
+import com.dashuju1.Entity.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,7 @@ public class LoginFilter implements Filter {
             }
         }
         HttpSession session = req.getSession();
-        Object user = session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         if (user != null){
             chain.doFilter(request, response);
         }else {

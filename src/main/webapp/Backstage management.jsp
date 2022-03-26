@@ -1,4 +1,6 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.dashuju1.Entity.teacher" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: luten
   Date: 2022/3/25
@@ -296,7 +298,7 @@
     </div>
     <div class="gly">
         <img src="./img/main-1.png" alt="" class="gly-img">
-        <span class="gly-ter">管理员${user.getUser_tno}</span>
+        <span class="gly-ter">管理员</span>
     </div>
     <div class="exit">
         <a href="login.jsp"><img src="img/exit.png" class="exit-img"></a>
@@ -354,37 +356,37 @@
         </div>
         <div class="main-middle">
             <div class="card">
-                <div class="card-body"
-                     style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
-                    <div class="semester">
-                        <!--  学期 -->
-                        <span class="semester-text">学期</span>
-                        <select name="xueqi" class="xiala">
-                            <option value="2021-2022第1学期">2021-2022第1学期</option>
-                            <option value="2020-2021第2学期">2020-2021第2学期</option>
-                            <option value="2020-2021第1学期">2020-2021第1学期</option>
-                        </select>
+                <div class="card-body" style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
+                    <form action="<c:url value="/BackstageServlet"/>" method="post">
+                        <div class="semester">
+                            <!--  学期 -->
+                            <span class="semester-text">学期</span>
+                            <select name="semester" class="xiala">
+                                <option value="3">2021-2022第1学期</option>
+                                <option value="2">2020-2021第2学期</option>
+                                <option value="1">2020-2021第1学期</option>
+                            </select>
 
-                    </div>
-                    <div class="bumen">
-                        <!-- 部门 -->
-                        <span class="semester-text">部门</span>
-                        <select name="xueqi" class="xiala">
-                            <option value=""></option>
-
-                        </select>
-                    </div>
-                    <!-- 输入学号/工号 -->
-                    <div class="num">
-                        <span class="num-we">工号/学号</span>
-                        <input type="text" name="gonghao" id="gonghao" class="num-text" />
-                    </div>
-                    <!-- 点击按钮进行查询 -->
-                    <div class="an">
-                        <button type="button" class="chaxun">查询</button>
-                    </div>
-
-
+                        </div>
+                        <div class="bumen">
+                            <!-- 部门 -->
+                            <span class="semester-text">部门</span>
+                            <select name="dept" class="xiala">
+                                <option value="1">软件与大数据系</option>
+                                <option value="2">数字媒体系</option>
+                                <option value="3">电子与通信系</option>
+                            </select>
+                        </div>
+                        <!-- 输入学号/工号 -->
+                        <div class="num">
+                            <span class="num-we">工号/学号</span>
+                            <input type="text" name="id" id="gonghao" class="num-text" />
+                        </div>
+                        <!-- 点击按钮进行查询 -->
+                        <div class="an">
+                            <button type="submit" class="chaxun">查询</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -402,75 +404,62 @@
                         <th scope="col">所属部门</th>
                         <th scope="col">总分</th>
                         <th scope="col">部门排名</th>
-                        <th scope="col">全校排名</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">333</th>
-                        <td>王国强</td>
-                        <td>软件与大数据系</td>
-                        <td>100</td>
-                        <td>1</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">444</th>
-                        <td>亓琳</td>
-                        <td>软件与大数据系</td>
-                        <td>99.86</td>
-                        <td>2</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">333</th>
-                        <td>王国强</td>
-                        <td>软件与大数据系</td>
-                        <td>100</td>
-                        <td>1</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">444</th>
-                        <td>亓琳</td>
-                        <td>软件与大数据系</td>
-                        <td>99.86</td>
-                        <td>2</td>
-                        <td>100</td>
-                    </tr>
-                    </tbody>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                        <%--%>
+<%--                            if (te != null) {--%>
+<%--                        %>--%>
+<%--                        <tr>--%>
+<%--                            <th scope="row"><%te.getTid();%></th>--%>
+<%--                            <td><%te.getTname();%></td>--%>
+<%--                            <td><%te.getTsdept();%></td>--%>
+<%--                            <td><%te.getTscore();%></td>--%>
+<%--                            <td><%te.getTrank();%></td>--%>
+<%--                        </tr>--%>
+<%--                        <%--%>
+<%--                        } else if (tel != null) {--%>
+<%--                            for (int i = 0; i < tel.size(); i++) {--%>
+<%--                        %>--%>
+<%--                                <tr>--%>
+<%--                                    <th scope="row"><%tel.get(i).getTname();%></th>--%>
+<%--                                    <td><%tel.get(i).getTname();%></td>--%>
+<%--                                    <td><%tel.get(i).getTsdept();%></td>--%>
+<%--                                    <td><%tel.get(i).getTscore();%></td>--%>
+<%--                                    <td><%tel.get(i).getTrank();%></td>--%>
+<%--                                </tr>--%>
+<%--                        <%--%>
+<%--                                }--%>
+<%--                            }--%>
+<%--                            int b = 0;%>--%>
+<%--                    </tbody>--%>
                 </table>
-                <div class="footer">
-                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <p>
-                                <a>共<span class="footer-span">462</span>条</a>&nbsp;&nbsp;
-                                <button type="button" class="btn btn-outline-primary" id="but1"><</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">1</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">2</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">3</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">4</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">5</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">...</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">47</button>
-                                <button type="button" class="btn btn-outline-primary" id="but1">></button> &nbsp;&nbsp;
-                                <select name="yeshu" id="yeshu" class="footer-xialai">
-                                    <option value="">10 / 条</option>
-                                </select>
-                                <a>跳至<input type="text" class="shuru" placeholder="1" />页</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="footer">--%>
+<%--                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">--%>
+<%--                        <div class="btn-group mr-2" role="group" aria-label="First group">--%>
+<%--                                <a>共<span class="footer-span"></span>条</a>&nbsp;&nbsp;--%>
+<%--                            <form action="PageServlet2" method="post">--%>
+<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="up" value="<%=b%>"><</input>--%>
+<%--                                <%--%>
+<%--                                    for (b = 0; b < p; b++) {--%>
+<%--                                %>--%>
+<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="go" value="<%=b%>"><%=b%></input>--%>
+<%--                                <%--%>
+<%--                                    }--%>
+<%--                                %>--%>
+<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="down"> value="<%=b%>></input> &nbsp;&nbsp;--%>
+<%--                                <select name="yeshu" id="yeshu" class="footer-xialai">--%>
+<%--                                    <option value="">10 / 条</option>--%>
+<%--                                </select>--%>
+<%--                                <a>跳至<input type="text" class="shuru" placeholder="1" />页</a>--%>
+<%--                            </form>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
-
         </div>
     </div>
 </div>
-</div>
-<script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.js"></script>
-<script src="./js/bootstrap.bundle.js"></script>
 </body>
 </html>
 

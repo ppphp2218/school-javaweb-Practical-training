@@ -288,6 +288,12 @@
             border: 1px solid rgba(217, 217, 217, 100);
         }
     </style>
+        <%
+            int p = (int) request.getAttribute("p");
+            int t = (int) request.getAttribute("t");
+            teacher te = (teacher) request.getAttribute("e");
+            ArrayList<teacher> tel = (ArrayList<teacher>) request.getAttribute("tel");
+        %>
 </head>
 
 <body>
@@ -405,57 +411,63 @@
                         <th scope="col">总分</th>
                         <th scope="col">部门排名</th>
                     </tr>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--                        <%--%>
-<%--                            if (te != null) {--%>
-<%--                        %>--%>
-<%--                        <tr>--%>
-<%--                            <th scope="row"><%te.getTid();%></th>--%>
-<%--                            <td><%te.getTname();%></td>--%>
-<%--                            <td><%te.getTsdept();%></td>--%>
-<%--                            <td><%te.getTscore();%></td>--%>
-<%--                            <td><%te.getTrank();%></td>--%>
-<%--                        </tr>--%>
-<%--                        <%--%>
-<%--                        } else if (tel != null) {--%>
-<%--                            for (int i = 0; i < tel.size(); i++) {--%>
-<%--                        %>--%>
-<%--                                <tr>--%>
-<%--                                    <th scope="row"><%tel.get(i).getTname();%></th>--%>
-<%--                                    <td><%tel.get(i).getTname();%></td>--%>
-<%--                                    <td><%tel.get(i).getTsdept();%></td>--%>
-<%--                                    <td><%tel.get(i).getTscore();%></td>--%>
-<%--                                    <td><%tel.get(i).getTrank();%></td>--%>
-<%--                                </tr>--%>
-<%--                        <%--%>
-<%--                                }--%>
-<%--                            }--%>
-<%--                            int b = 0;%>--%>
-<%--                    </tbody>--%>
+                    </thead>
+                    <tbody>
+                        <%
+                            if (te != null) {
+                        %>
+                        <tr>
+                            <th scope="row"><%te.getTid();%></th>
+                            <td><%te.getTname();%></td>
+                            <td><%te.getTsdept();%></td>
+                            <td><%te.getTscore();%></td>
+                            <td><%te.getTrank();%></td>
+                        </tr>
+                        <%
+                        } else if (tel != null) {
+                            for (int i = 0; i < tel.size(); i++) {
+                                teacher teac = tel.get(i);
+                                int tid = teac.getTid();
+                                String name = teac.getTname();
+                                String dept = teac.getTsdept();
+                                int sc = teac.getTscore();
+                                int rk = teac.getTrank();
+                        %>
+                                <tr>
+                                    <th scope="row"><%=tid%></th>
+                                    <td><%=name%></td>
+                                    <td><%=dept%></td>
+                                    <td><%=sc%></td>
+                                    <td><%=rk%></td>
+                                </tr>
+                        <%
+                                }
+                            }
+                            int b;%>
+                    </tbody>
                 </table>
-<%--                <div class="footer">--%>
-<%--                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">--%>
-<%--                        <div class="btn-group mr-2" role="group" aria-label="First group">--%>
-<%--                                <a>共<span class="footer-span"></span>条</a>&nbsp;&nbsp;--%>
-<%--                            <form action="PageServlet2" method="post">--%>
-<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="up" value="<%=b%>"><</input>--%>
-<%--                                <%--%>
-<%--                                    for (b = 0; b < p; b++) {--%>
-<%--                                %>--%>
-<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="go" value="<%=b%>"><%=b%></input>--%>
-<%--                                <%--%>
-<%--                                    }--%>
-<%--                                %>--%>
-<%--                                <input type="submit" class="btn btn-outline-primary" id="but1" name="down"> value="<%=b%>></input> &nbsp;&nbsp;--%>
-<%--                                <select name="yeshu" id="yeshu" class="footer-xialai">--%>
-<%--                                    <option value="">10 / 条</option>--%>
-<%--                                </select>--%>
-<%--                                <a>跳至<input type="text" class="shuru" placeholder="1" />页</a>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <div class="footer">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <a>共<span class="footer-span"><%=t%></span>条</a>&nbsp;&nbsp;
+                            <form action="PageServlet2" method="post">
+                                <input type="submit" class="btn btn-outline-primary" id="but1" name="up" value="<"></input>
+                                <%
+                                    for (b = 1; b <= p; b++) {
+                                %>
+                                <input type="submit" class="btn btn-outline-primary" id="but1" name="go" value="<%=b%>"></input>
+                                <%
+                                    }
+                                %>
+                                <input type="submit" class="btn btn-outline-primary" id="but1" name="down" value=">"></input> &nbsp;&nbsp;
+                                <select name="yeshu" id="yeshu" class="footer-xialai">
+                                    <option value="">10 / 条</option>
+                                </select>
+                                <a>跳至<input type="text" class="shuru" placeholder="1" />页</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

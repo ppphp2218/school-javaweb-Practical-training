@@ -123,7 +123,7 @@
             <!-- 输入用户名 -->
             <div class="txt1">
                 <img src="img/main.png">
-                <input type="text" name="admin" id="admin"  required="required" placeholder="请输入用户名" />
+                <input type="text" name="name" id="admin"  required="required" placeholder="请输入用户名" />
             </div>
             <!-- 输入密码 -->
             <div class="txt1">
@@ -136,7 +136,7 @@
                 }
             %>
             <!-- 点击按钮跳转 -->
-            <button type="button" class="btn" onclick="jump()">登录</button>
+            <input type="submit" class="btn">登录</input>
         </form>
     </div>
 </div>
