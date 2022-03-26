@@ -8,19 +8,14 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 @WebServlet(name = "BackstageServlet", urlPatterns = "/BackstageServlet")
 public class BackstageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int semester = Integer.parseInt(request.getParameter("semester"));
-        System.out.println(semester);
         int dept = Integer.parseInt(request.getParameter("dept"));
-        System.out.println(dept);
         String tno = request.getParameter("id");
-        System.out.println(tno + "=====");
-
         //需要显示的页数
         int p;
         //需要显示数据的条数
@@ -30,10 +25,8 @@ public class BackstageServlet extends HttpServlet {
                 teacherDao td = new teacherDao();
                 ArrayList<teacher> list = td.selectDept1All();
                 if (tno == ""){
-                    request.setAttribute("teacher", list);
                     request.setAttribute("n", 1);
                     request.getRequestDispatcher("/PageServlet").forward(request, response);
-                    System.out.println(list);
                 }else {
                     boolean flag = false;
                     for (teacher e : list){
