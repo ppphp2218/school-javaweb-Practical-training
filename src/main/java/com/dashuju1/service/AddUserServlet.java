@@ -5,8 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "UserManagementServlet", urlPatterns = "/UserManagementServlet")
-public class UserManagementServlet extends HttpServlet {
+@WebServlet(name = "AddUserServlet", urlPatterns = "/AddUserServlet")
+public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -15,5 +15,7 @@ public class UserManagementServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tno = request.getParameter("");
+        String tpass = request.getParameter("");
+        
     }
 }

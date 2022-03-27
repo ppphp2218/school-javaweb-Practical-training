@@ -3,14 +3,24 @@ package com.dashuju1.Entity;
 public class User {
     private String user_tno;
     private String user_pass;
+    private String user_id;
 
-    public User(String user_tno, String user_pass) {
+    public User(String user_tno, String user_pass, String user_id) {
         this.user_tno = user_tno;
         this.user_pass = user_pass;
+        this.user_id = user_id;
     }
 
     public User() {
 
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getUser_tno() {

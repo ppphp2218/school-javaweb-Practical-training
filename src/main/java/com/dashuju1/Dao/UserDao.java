@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDao {
     Connection con = null;
@@ -33,15 +34,59 @@ public class UserDao {
         }
         return user;
     }
+    public ArrayList<User> ShouAllUser(){
+        ArrayList<User> list = new ArrayList<>();
+        User user = null;
+        try {
+            String sql = "select * from user";
+            con = DbUtils.getConnection();
+            st = con.prepareStatement(sql);
+            rs =st.executeQuery();
+            int i = 0;
+            do {
+                user = new User();
+                user.setUser_id(rs.getString(1));
+                user.setUser_pass(rs.getString(2));
+                user.setUser_tno(rs.getString(3));
+                list.add(i,user);
+                i++;
+            }while (rs.next());
+        }catch (SQLException e){
+            throw new RuntimeException("数据库连接异常"+e.getMessage());
+        }finally {
+            DbUtils.close(con,st,rs);
+        }
+        return list;
+    }
     public void AddUser(User u){
+        String tid = u.getUser_id();
         String tno = u.getUser_tno();
         String tpass = u.getUser_pass();
         try {
-            String sql = "insert into user(user_tno, user_pass) VALUES(?,?)";
+            String sql = "insert into user(id,user_tno, user_pass) VALUES(?,?,?)";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
-            st.setString(1,tno);
-            st.setString(2,tpass);
+            st.setString(1,tid);
+            st.setString(2,tno);
+            st.setString(3,tpass);
+            rs =st.executeQuery();
+        }catch (SQLException e){
+            throw new RuntimeException("数据库连接异常"+e.getMessage());
+        }finally {
+            DbUtils.close(con,st,rs);
+        }
+    }
+    public void DropUser(User u){
+        String tid = u.getUser_id();
+        String tno = u.getUser_tno();
+        String tpass = u.getUser_pass();
+        try {
+            String sql = "insert into user(id,user_tno, user_pass) VALUES(?,?,?)";
+            con = DbUtils.getConnection();
+            st = con.prepareStatement(sql);
+            st.setString(1,tid);
+            st.setString(2,tno);
+            st.setString(3,tpass);
             rs =st.executeQuery();
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
