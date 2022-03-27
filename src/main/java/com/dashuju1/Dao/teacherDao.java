@@ -16,7 +16,7 @@ public class teacherDao {
             list = new ArrayList<teacher>();
             String sql = "select teacher.tno, teacher.tname, score.tscore " +
                     "from teacher,score where teacher.sdept_id=5 " +
-                    "and teacher.tno=score.tno order by score.tscore asc ";
+                    "and teacher.tno=score.tno order by score.tscore desc ";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
             rs = st.executeQuery();

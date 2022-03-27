@@ -1,4 +1,4 @@
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.dashuju1.Entity.teacher" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css" />
-    <title>后台管理</title>
+    <title>基础数据看板</title>
     <style>
         * {
             margin: 0;
@@ -293,7 +293,6 @@
             background:url(img/1.png) no-repeat center;
             cursor:pointer;
             /* 上面的代码是常规设置， 即：引入一个图片背景，设置在中心位置，大小和按钮的大小一致，以及鼠标指针为手型 */
-
             display:block;
             font-size:0;
             line-height:0;
@@ -304,7 +303,6 @@
             background:url(img/2.png) no-repeat center;
             cursor:pointer;
             /* 上面的代码是常规设置， 即：引入一个图片背景，设置在中心位置，大小和按钮的大小一致，以及鼠标指针为手型 */
-
             display:block;
             font-size:0;
             line-height:0;
@@ -317,7 +315,6 @@
             int p = (Integer) request.getAttribute("p");
             int t = (int) request.getAttribute("t");
             int n = (int) request.getAttribute("n");
-            teacher te = (teacher) request.getAttribute("e");
             ArrayList<teacher> tel = (ArrayList<teacher>) request.getAttribute("tel");
         %>
 </head>
@@ -440,17 +437,7 @@
                     </thead>
                     <tbody>
                         <%
-                            if (te != null) {
-                        %>
-                        <tr>
-                            <th scope="row"><%te.getTid();%></th>
-                            <td><%te.getTname();%></td>
-                            <td><%te.getTsdept();%></td>
-                            <td><%te.getTscore();%></td>
-                            <td><%te.getTrank();%></td>
-                        </tr>
-                        <%
-                        } else if (tel != null) {
+                            if (tel != null) {
                             for (int i = 0; i < tel.size(); i++) {
                                 teacher teac = tel.get(i);
                                 int tid = teac.getTid();

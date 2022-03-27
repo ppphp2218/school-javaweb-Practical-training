@@ -22,22 +22,26 @@ public class BackstageServlet extends HttpServlet {
         int t;
         if (semester==3){
             if (dept==1){
-                teacherDao td = new teacherDao();
-                ArrayList<teacher> list = td.selectDept1All();
                 if (tno == ""){
                     request.setAttribute("n", 1);
                     request.getRequestDispatcher("/PageServlet").forward(request, response);
                 }else {
+                    teacherDao td = new teacherDao();
+                    ArrayList<teacher> list = td.selectDept1All();
+                    System.out.println(list);
                     boolean flag = false;
                     for (teacher e : list){
+                        System.out.println(e.getTid());
+                        System.out.println(tno);
                         if (Integer.parseInt(tno)==e.getTid()){
                             p=1;
                             t=1;
                             flag =true;
                             //显示e
-                            request.setCharacterEncoding("UTF-8");
-                            request.setAttribute("teacher", e);
-                            request.setAttribute("tea", e);
+                            ArrayList<teacher> l = new ArrayList<>();
+                            l.add(0,e);
+                            request.setAttribute("tel", l);
+                            request.setAttribute("n", 1);
                             request.setAttribute("p", p);
                             request.setAttribute("t", t);
                             request.getRequestDispatcher("/Backstage management1.jsp").forward(request, response);

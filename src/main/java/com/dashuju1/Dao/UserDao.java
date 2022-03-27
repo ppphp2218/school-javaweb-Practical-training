@@ -33,4 +33,20 @@ public class UserDao {
         }
         return user;
     }
+    public void AddUser(User u){
+        String tno = u.getUser_tno();
+        String tpass = u.getUser_pass();
+        try {
+            String sql = "insert into user(user_tno, user_pass) VALUES(?,?)";
+            con = DbUtils.getConnection();
+            st = con.prepareStatement(sql);
+            st.setString(1,tno);
+            st.setString(2,tpass);
+            rs =st.executeQuery();
+        }catch (SQLException e){
+            throw new RuntimeException("数据库连接异常"+e.getMessage());
+        }finally {
+            DbUtils.close(con,st,rs);
+        }
+    }
 }

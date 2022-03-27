@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <title>首页</title>
     <style>
         * {
@@ -95,30 +95,35 @@
             text-align: left;
             font-family: Roboto;
         }
+
         .main-middle {
             display: flex;
         }
+
         .chaxun {
             width: 120px;
             height: 30px;
             border-radius: 4px;
             margin-right: 80px;
-            margin-top:30px;
+            margin-top: 30px;
             background-color: rgba(16, 26, 122, 100);
             color: rgba(255, 255, 255, 100);
             font-size: 14px;
             text-align: center;
             font-family: Microsoft Yahei;
         }
+
         .footer p {
             margin-top: 20px;
             width: 1400px;
             height: 30px;
             text-align: right;
         }
+
         .footer a {
             font-size: 13px;
         }
+
         .header1 button {
             position: absolute;
             right: 50px;
@@ -145,19 +150,75 @@
 <div class="main">
     <div class="jckb">
         <div class="card-header">
-            <span class="jckb-top">系统首页</span>
+            <span class="jckb-top">后台管理</span>
         </div>
         <div class="main-middle">
             <div class="card">
-                <div class="card-body" style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
-                    <form action="Backstage%20management.jsp" method="post">
-                        <input type="submit"class="chaxun" value="基础数据看板"/>
-                        <input type="submit" formaction="" class="chaxun" value="后台管理"></input>
-                    </form>
+                <div class="card-body">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" class="am-btn am-btn-success"
+                                            data-am-modal="{target: '#new-popup'}">
+                                        <span class="am-icon-plus"></span> 添加用户
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="height: 300px">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th class="table-id">
+                                            序号
+                                        </th>
+                                        <th class="table-title">
+                                            用户名
+                                        </th>
+                                        <th class="table-title">
+                                            密码
+                                        </th>
+                                        <th class="table-author ">
+                                            创建时间
+                                        </th>
+                                        <th class="table-author ">
+                                            操作
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+<%--                                    <%--%>
+<%--                                        request.setCharacterEncoding("UTF-8");--%>
+<%--                                        News news = new News();--%>
+<%--                                        Function Fun = new Function();--%>
+<%--                                        String strPage = request.getParameter("intPage");    //当前页数--%>
+<%--                                        // /mhwz   /front/news.jsp?--%>
+<%--                                        String sPage = request.getContextPath() + request.getServletPath() + "?";--%>
+<%--                                        String sOK = news.ListNews(sPage, strPage);--%>
+<%--                                        if (sOK.equals("No")) {--%>
+<%--                                            out.println("数据服务器出现错误！");--%>
+<%--                                        } else {--%>
+<%--                                            out.println(sOK);--%>
+<%--                                        }--%>
+<%--                                    %>--%>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                <!-- content end -->
+
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 </body>
 </html>

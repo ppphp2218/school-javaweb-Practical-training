@@ -19,6 +19,7 @@ public class PageServlet extends HttpServlet {
         int n = (int) request.getAttribute("n");
         //需要显示的页数
         System.out.println(n);
+        System.out.println();
         int p;
         //需要显示数据的条数
         int t;
@@ -36,16 +37,15 @@ public class PageServlet extends HttpServlet {
     }
     private ArrayList<teacher> getlist(ArrayList<teacher> l,int p,int n){
         Map<Integer, ArrayList<teacher>> m = new HashMap<>();
-        int li;
-        int mi = 0;
+        int li=0;
         for (int i = 0;i < p;i++){
             ArrayList<teacher> ll = new ArrayList<teacher>();
-            li = 0;
-            for (int j = i;j<i+10;j++){
+            for (int j = i*10;j<i*10+10;j++){
                 ll.add(li,l.get(j));
                 li++;
             }
-            m.put(mi,ll);
+            li=0;
+            m.put(i,ll);
         }
         return m.get(n-1);
     }
