@@ -1,11 +1,12 @@
-<%--
+<%@ page import="com.dashuju1.Entity.User" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: luten
   Date: 2022/3/25
   Time: 23:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -104,13 +105,13 @@
             width: 120px;
             height: 30px;
             border-radius: 4px;
-            margin-right: 80px;
-            margin-top: 30px;
-            background-color: rgba(16, 26, 122, 100);
+            margin-right: 60px;
+            margin-top: 15px;
+            background-color: forestgreen;/**rgba(16, 26, 122, 100)**/
             color: rgba(255, 255, 255, 100);
             font-size: 14px;
             text-align: center;
-            font-family: Microsoft Yahei;
+            font-family: Microsoft Yahei, serif;
         }
 
         .footer p {
@@ -131,6 +132,9 @@
         }
 
     </style>
+    <%
+        ArrayList<User> users = (ArrayList<User>) request.getAttribute("u");
+    %>
 </head>
 
 <body>
@@ -154,24 +158,18 @@
         </div>
         <div class="main-middle">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body"
+                     style="left: 60px;top: 306px;width: 1500px;line-height: 20px;text-align: center;">
                     <div class="am-g">
-                        <div class="am-u-sm-12 am-u-md-6">
-                            <div class="am-btn-toolbar">
-                                <div class="am-btn-group am-btn-group-xs">
-                                    <button type="button" class="am-btn am-btn-success"
-                                            data-am-modal="{target: '#new-popup'}">
-                                        <span class="am-icon-plus"></span> 添加用户
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="submit" class="chaxun" value="addUser" style="float:left; margin-bottom: 10px;" onclick="jump()">
+                            <span class="am-icon-plus"></span> + 添加用户
+                        </button>
                     </div>
 
-                    <div class="am-g" style="height: 300px">
+                    <div class="am-g">
                         <div class="am-u-sm-12">
                             <form class="am-form">
-                                <table class="am-table am-table-striped am-table-hover table-main">
+                                <table class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th class="table-id">
@@ -183,30 +181,34 @@
                                         <th class="table-title">
                                             密码
                                         </th>
-                                        <th class="table-author ">
-                                            创建时间
-                                        </th>
-                                        <th class="table-author ">
+                                        <th class="table-author">
                                             操作
                                         </th>
                                     </tr>
+                                    <%--向表格中填数据--%>
+                                    <%
+                                        if (users != null) {
+                                            for (int i = 0; i < users.size(); i++) {
+                                                User u = users.get(i);
+                                                String id = u.getUser_id();
+                                                String tno = u.getUser_tno();
+                                                String pass = u.getUser_pass();
+                                    %>
+                                    <tr>
+                                        <th ><%=id%></th>
+                                        <td><%=tno%></td>
+                                        <td><%=pass%></td>
+                                        <td>
+
+
+                                        </td>
+                                    </tr>
+                                    <%
+                                            }
+                                        }
+                                        %>
                                     </thead>
-                                    <tbody>
-<%--                                    <%--%>
-<%--                                        request.setCharacterEncoding("UTF-8");--%>
-<%--                                        News news = new News();--%>
-<%--                                        Function Fun = new Function();--%>
-<%--                                        String strPage = request.getParameter("intPage");    //当前页数--%>
-<%--                                        // /mhwz   /front/news.jsp?--%>
-<%--                                        String sPage = request.getContextPath() + request.getServletPath() + "?";--%>
-<%--                                        String sOK = news.ListNews(sPage, strPage);--%>
-<%--                                        if (sOK.equals("No")) {--%>
-<%--                                            out.println("数据服务器出现错误！");--%>
-<%--                                        } else {--%>
-<%--                                            out.println(sOK);--%>
-<%--                                        }--%>
-<%--                                    %>--%>
-                                    </tbody>
+
                                 </table>
                             </form>
                         </div>
@@ -220,5 +222,10 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+    function jump() {
+        window.location.href = "addUser.jsp"
+    }
+</script>
 </body>
 </html>

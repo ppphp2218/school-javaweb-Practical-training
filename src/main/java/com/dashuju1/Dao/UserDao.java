@@ -34,23 +34,24 @@ public class UserDao {
         }
         return user;
     }
+
     public ArrayList<User> ShouAllUser(){
         ArrayList<User> list = new ArrayList<>();
-        User user = null;
+        User user;
         try {
             String sql = "select * from user";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
             rs =st.executeQuery();
             int i = 0;
-            do {
+            while (rs.next()){
                 user = new User();
                 user.setUser_id(rs.getString(1));
                 user.setUser_pass(rs.getString(2));
                 user.setUser_tno(rs.getString(3));
                 list.add(i,user);
                 i++;
-            }while (rs.next());
+            }
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
         }finally {
@@ -58,6 +59,7 @@ public class UserDao {
         }
         return list;
     }
+
     public void AddUser(User u){
         String tid = u.getUser_id();
         String tno = u.getUser_tno();
@@ -76,6 +78,7 @@ public class UserDao {
             DbUtils.close(con,st,rs);
         }
     }
+
     public void DropUser(User u){
         String tid = u.getUser_id();
         String tno = u.getUser_tno();
@@ -94,4 +97,20 @@ public class UserDao {
             DbUtils.close(con,st,rs);
         }
     }
+
+    public void UpdateUser(String tid,String tpass){
+        try {
+            String sql = "UPDATE ";
+            con = DbUtils.getConnection();
+            st = con.prepareStatement(sql);
+//            st.setString(1,tid);
+//            st.setString(2,tno);
+            rs =st.executeQuery();
+        }catch (SQLException e){
+            throw new RuntimeException("数据库连接异常"+e.getMessage());
+        }finally {
+            DbUtils.close(con,st,rs);
+        }
+    }
+
 }

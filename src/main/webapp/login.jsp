@@ -136,7 +136,7 @@
                 }
             %>
             <!-- 点击按钮跳转 -->
-            <input type="submit" class="btn">登录</input>
+            <input type="submit" class="btn" value="登录">
         </form>
     </div>
 </div>

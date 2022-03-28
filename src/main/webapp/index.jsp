@@ -152,7 +152,9 @@
                 <div class="card-body" style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
                     <form action="Backstage%20management.jsp" method="post">
                         <input type="submit"class="chaxun" value="基础数据看板"/>
-                        <input type="submit" formaction="" class="chaxun" value="后台管理"></input>
+                    </form>
+                    <form action="ShouUserServlet" method="post">
+                        <input type="submit"  class="chaxun" value="后台管理">
                     </form>
                 </div>
             </div>
