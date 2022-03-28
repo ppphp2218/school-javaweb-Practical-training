@@ -167,7 +167,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" id="register" name="register" value="submit">
+                        <input type="submit" id="register" name="register" value="添加用户">
             </table>
         </form>
     </div>
