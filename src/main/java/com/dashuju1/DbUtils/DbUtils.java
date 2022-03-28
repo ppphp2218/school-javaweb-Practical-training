@@ -1,60 +1,42 @@
 package com.dashuju1.DbUtils;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import java.sql.*;
 
 public class DbUtils {
-    private static Properties properties = new Properties();
-    private static DataSource dataSource;
 
-    static {
+    static{
         try {
-            //FileInputStream is = new FileInputStream("F:\\study\\javaweb\\workspace\\java-web-job\\src\\dbcp.properties");
-            InputStream resourceAsStream = DbUtils.class.getClassLoader().getResourceAsStream("dbcp.properties");
-            System.out.println(resourceAsStream);
-            properties.load(resourceAsStream);
-            dataSource = BasicDataSourceFactory.createDataSource(properties);
-        } catch (Exception e) {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+    public static Connection getConnection() throws SQLException {
+        Connection con = null;
+        con = DriverManager.getConnection("jdbc:mysql://39.105.122.88:3306/homework","root","221827");
+        return con;
     }
-
-    public static void close(Connection conn,Statement stat,ResultSet rs){
+    public static void close(Connection con, Statement st, ResultSet rs) throws SQLException {
         try {
-            if(rs!=null){
+            if (st!=null)
+                st.close();
+            if (rs!=null)
                 rs.close();
-            }
-            if(stat!=null){
-                stat.close();
-            }
-            if(conn!=null){
-                conn.close();
-            }
+            if (con!=null)
+                con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void close(Connection con, Statement st) throws SQLException {
+        try {
+            if (st!=null)
+                st.close();
+            if (con!=null)
+                con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
+

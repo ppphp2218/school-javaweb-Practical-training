@@ -10,7 +10,7 @@ public class teacherDao {
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;
-    public ArrayList selectDept1All() {
+    public ArrayList selectDept1All(){
         ArrayList<teacher> list = null;
         try {
             list = new ArrayList<teacher>();
@@ -34,7 +34,11 @@ public class teacherDao {
         } catch (SQLException e) {
             throw new RuntimeException("数据库连接异常" + e.getMessage());
         } finally {
-            DbUtils.close(con, st, rs);
+            try {
+                DbUtils.close(con, st, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
         return list;

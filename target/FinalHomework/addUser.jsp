@@ -155,7 +155,7 @@
     </div>
     <!--中部-->
     <div class="middle" align="center">
-        <form action="" method="post">
+        <form action="AddUserServlet" method="post">
             <table border="0">
                 <tr>
                     <td>用户名：</td>

@@ -124,7 +124,14 @@
             right: 50px;
             top: 10px;
         }
+        .put{
+            margin: auto;
+            float: left;
+        }
 
+        #a{
+            margin-left: 450px;
+        }
     </style>
 </head>
 
@@ -150,11 +157,11 @@
         <div class="main-middle">
             <div class="card">
                 <div class="card-body" style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
-                    <form action="Backstage%20management.jsp" method="post">
+                    <form action="Backstage%20management.jsp" method="post" class="put" id="a">
                         <input type="submit"class="chaxun" value="基础数据看板"/>
                     </form>
-                    <form action="ShouUserServlet" method="post">
-                        <input type="submit"  class="chaxun" value="后台管理">
+                    <form action="um.jsp" method="post">
+                        <input type="submit"  class="chaxun" value="后台管理" class="put">
                     </form>
                 </div>
             </div>

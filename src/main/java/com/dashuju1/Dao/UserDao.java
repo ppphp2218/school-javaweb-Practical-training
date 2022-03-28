@@ -27,10 +27,9 @@ public class UserDao {
                 user.setUser_tno(rs.getString(1));
                 user.setUser_pass(rs.getString(2));
             }
+            DbUtils.close(con,st,rs);
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
-        }finally {
-            DbUtils.close(con,st,rs);
         }
         return user;
     }
@@ -47,69 +46,56 @@ public class UserDao {
             while (rs.next()){
                 user = new User();
                 user.setUser_id(rs.getString(1));
-                user.setUser_pass(rs.getString(2));
-                user.setUser_tno(rs.getString(3));
+                user.setUser_tno(rs.getString(2));
+                user.setUser_pass(rs.getString(3));
                 list.add(i,user);
                 i++;
             }
+            DbUtils.close(con,st,rs);
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
-        }finally {
-            DbUtils.close(con,st,rs);
         }
         return list;
     }
 
-    public void AddUser(User u){
-        String tid = u.getUser_id();
-        String tno = u.getUser_tno();
-        String tpass = u.getUser_pass();
+    public void AddUser(String tno,String tpass){
         try {
-            String sql = "insert into user(id,user_tno, user_pass) VALUES(?,?,?)";
+            String sql = "insert into user(user_tno, user_pass) VALUES(?,?);";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
-            st.setString(1,tid);
-            st.setString(2,tno);
-            st.setString(3,tpass);
-            rs =st.executeQuery();
+            st.setString(1,tno);
+            st.setString(2,tpass);
+            st.executeUpdate();
+            DbUtils.close(con,st,rs);
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
-        }finally {
-            DbUtils.close(con,st,rs);
         }
     }
 
-    public void DropUser(User u){
-        String tid = u.getUser_id();
-        String tno = u.getUser_tno();
-        String tpass = u.getUser_pass();
+    public void DropUser(String id){
         try {
-            String sql = "insert into user(id,user_tno, user_pass) VALUES(?,?,?)";
+            String sql = "delete from user where id=?";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
-            st.setString(1,tid);
-            st.setString(2,tno);
-            st.setString(3,tpass);
-            rs =st.executeQuery();
+            st.setString(1,id);
+            st.executeUpdate();
+            DbUtils.close(con,st,rs);
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
-        }finally {
-            DbUtils.close(con,st,rs);
         }
     }
 
     public void UpdateUser(String tid,String tpass){
         try {
-            String sql = "UPDATE ";
+            String sql = "UPDATE user set user_pass=? where id=?";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
-//            st.setString(1,tid);
-//            st.setString(2,tno);
-            rs =st.executeQuery();
+            st.setString(1,tpass);
+            st.setString(2,tid);
+            st.execute();
+            DbUtils.close(con,st,rs);
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
-        }finally {
-            DbUtils.close(con,st,rs);
         }
     }
 

@@ -1,5 +1,6 @@
 <%@ page import="com.dashuju1.Entity.User" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.dashuju1.Dao.UserDao" %><%--
   Created by IntelliJ IDEA.
   User: luten
   Date: 2022/3/25
@@ -107,7 +108,7 @@
             border-radius: 4px;
             margin-right: 60px;
             margin-top: 15px;
-            background-color: forestgreen;/**rgba(16, 26, 122, 100)**/
+            background-color: forestgreen; /**rgba(16, 26, 122, 100)**/
             color: rgba(255, 255, 255, 100);
             font-size: 14px;
             text-align: center;
@@ -131,9 +132,35 @@
             top: 10px;
         }
 
+        .status {
+            width: 60px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 60px;
+            margin-top: 15px;
+            float: left;
+            /*background-color: forestgreen; !**rgba(16, 26, 122, 100)**!*/
+            font-size: 14px;
+            text-align: center;
+            font-family: Microsoft Yahei, serif;
+        }
+        #del{
+            width:60px;
+            height:20px;
+            background:url(img/s.png) no-repeat center;
+            cursor:pointer;
+            /* 上面的代码是常规设置， 即：引入一个图片背景，设置在中心位置，大小和按钮的大小一致，以及鼠标指针为手型 */
+
+            display:block;
+            font-size:0;
+            line-height:0;
+            text-indent:-9999px;
+            /* 上面的不用多问，四句一起拷贝就可以了，大概意思就是把value值设置为0像素，也就是肉眼无法看到，但却又是存在的（用$_POST['submit_btn'] 可以证明）*/
+        }
     </style>
     <%
-        ArrayList<User> users = (ArrayList<User>) request.getAttribute("u");
+        UserDao d = new UserDao();
+        ArrayList<User> users = d.ShouAllUser();
     %>
 </head>
 
@@ -161,7 +188,8 @@
                 <div class="card-body"
                      style="left: 60px;top: 306px;width: 1500px;line-height: 20px;text-align: center;">
                     <div class="am-g">
-                        <button type="submit" class="chaxun" value="addUser" style="float:left; margin-bottom: 10px;" onclick="jump()">
+                        <button type="submit" class="chaxun" value="addUser" style="float:left; margin-bottom: 10px;"
+                                onclick="jump()">
                             <span class="am-icon-plus"></span> + 添加用户
                         </button>
                     </div>
@@ -195,20 +223,26 @@
                                                 String pass = u.getUser_pass();
                                     %>
                                     <tr>
-                                        <th ><%=id%></th>
-                                        <td><%=tno%></td>
-                                        <td><%=pass%></td>
+                                        <th><%=id%>
+                                        </th>
+                                        <td><%=tno%>
+                                        </td>
+                                        <td><%=pass%>
+                                        </td>
                                         <td>
-
-
+                                            <form action="UpdateUser.jsp" method="post">
+                                                <input type="submit" class="status" style="background-color: skyblue" value="修改密码">
+                                            </form>
+                                           <form action="DropUserServlet" method="post">
+                                               <input type="submit" value="<%=id%>" id="del" name="id">
+                                           </form>
                                         </td>
                                     </tr>
                                     <%
                                             }
                                         }
-                                        %>
+                                    %>
                                     </thead>
-
                                 </table>
                             </form>
                         </div>
