@@ -1,7 +1,7 @@
 package com.dashuju1.service;
 
 import com.dashuju1.DbUtils.DbUtils;
-import com.dashuju1.Entity.teacher;
+import com.dashuju1.Dao.teacher;
 
 import java.sql.*;
 import java.util.ArrayList;

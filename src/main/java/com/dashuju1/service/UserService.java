@@ -1,6 +1,6 @@
 package com.dashuju1.service;
 
-import com.dashuju1.Entity.User;
+import com.dashuju1.Dao.User;
 import com.dashuju1.DbUtils.DbUtils;
 
 import java.sql.Connection;

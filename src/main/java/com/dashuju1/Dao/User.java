@@ -1,4 +1,4 @@
-package com.dashuju1.Entity;
+package com.dashuju1.Dao;
 
 public class User {
     private String user_tno;

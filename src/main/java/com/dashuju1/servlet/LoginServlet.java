@@ -1,6 +1,6 @@
 package com.dashuju1.servlet;
 
-import com.dashuju1.Entity.User;
+import com.dashuju1.Dao.User;
 import com.dashuju1.service.UserService;
 
 import javax.servlet.*;
