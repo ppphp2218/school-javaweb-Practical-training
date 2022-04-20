@@ -1,4 +1,4 @@
-package com.dashuju1.Dao;
+package com.dashuju1.service;
 
 import com.dashuju1.Entity.User;
 import com.dashuju1.DbUtils.DbUtils;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDao {
+public class UserService {
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;

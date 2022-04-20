@@ -1,4 +1,4 @@
-package com.dashuju1.Dao;
+package com.dashuju1.service;
 
 import com.dashuju1.DbUtils.DbUtils;
 import com.dashuju1.Entity.teacher;
@@ -6,7 +6,7 @@ import com.dashuju1.Entity.teacher;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class teacherDao {
+public class TeacherService {
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;
@@ -31,8 +31,7 @@ public class teacherDao {
                 list.add(tea);
                 i++;
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("数据库连接异常" + e.getMessage());
+        } catch (SQLException e) {            throw new RuntimeException("数据库连接异常" + e.getMessage());
         } finally {
             try {
                 DbUtils.close(con, st, rs);
