@@ -95,7 +95,7 @@
             width: 120px;
             height: 30px;
             border-radius: 4px;
-            margin-right: 80px;
+            margin-right: 370px;
             margin-top:30px;
             background-color: rgba(16, 26, 122, 100);
             color: rgba(255, 255, 255, 100);
@@ -150,16 +150,24 @@
         <div class="main-middle">
             <div class="card">
                 <div class="card-body" style="left: 171px;top: 306px;width: 1500px;height: 127px;line-height: 20px;text-align: center;">
-                    <form action="Backstage%20management.jsp" method="post" class="put" id="a">
-                        <input type="submit"class="chaxun" value="基础数据看板"/>
-                    </form>
-                    <form action="um.jsp" method="post">
-                        <input type="submit"  class="chaxun" value="后台管理" class="put">
-                    </form>
+<!--                    <form action="Backstage%20management.jsp" method="post" class="put" id="a">-->
+<!--                        <input type="submit"class="chaxun" value="基础数据看板"/>-->
+<!--                    </form>-->
+                    <a href="Backstage%20management.html"><button type="button" class="chaxun" id="a" onclick="goa()">基础数据看板</button></a>
+<!--                    <form action="um.jsp" method="post">-->
+<!--                        <input type="submit"  class="chaxun" value="后台管理" class="put">-->
+<!--                    </form>-->
+                    <button type="button" class="chaxun" onclick="gob()">后台管理</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script>
+    function gob() {
+        window.location.href="";
+    }
+
+</script>
 </html>

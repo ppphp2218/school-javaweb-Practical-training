@@ -101,8 +101,8 @@
 	<script src="./js/http_unpkg.com_axios_dist_axios.js"></script>
 	<script type="text/javascript">
 		function jump() {
-			var username = document.getElementById("admin");
-			var password = document.getElementById("password");
+			var username = document.getElementById("admin").value;
+			var password = document.getElementById("password".value);
 			var xhttp;
 			if (window.XMLHttpRequest) {
 				xhttp = new XMLHttpRequest();
@@ -110,7 +110,7 @@
 				// code for IE6, IE5
 				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
-			xhttp.open("GET", "http://localhost:8080/java_web_job_war/loginServlet?username=" + username.value + "&password=" + password.value);
+			xhttp.open("GET", "http://localhost:8080/java_web_job_war/loginServlet?username=" + username+ "&password=" + password);
 			xhttp.send();
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {

@@ -1,16 +1,19 @@
 package com.dashuju1.service;
 
-import com.dashuju1.DbUtils.DbUtils;
 import com.dashuju1.Dao.teacher;
+import com.dashuju1.DbUtils.DbUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TeacherService {
+public class TeacherServers {
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;
-    public ArrayList selectDept1All(){
+    public ArrayList<teacher> selectDept1All(){
         ArrayList<teacher> list = null;
         try {
             list = new ArrayList<teacher>();
@@ -31,7 +34,8 @@ public class TeacherService {
                 list.add(tea);
                 i++;
             }
-        } catch (SQLException e) {            throw new RuntimeException("数据库连接异常" + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException("数据库连接异常" + e.getMessage());
         } finally {
             try {
                 DbUtils.close(con, st, rs);
@@ -41,5 +45,16 @@ public class TeacherService {
 
         }
         return list;
+    }
+    public teacher selectbyID(int id){
+        teacher tea = null;
+        ArrayList<teacher> list = this.selectDept1All();
+        for (teacher t:list) {
+            if (t.getTid()==id){
+                tea = t;
+                break;
+            }
+        }
+        return tea;
     }
 }
