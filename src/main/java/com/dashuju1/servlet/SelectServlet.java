@@ -31,7 +31,6 @@ public class SelectServlet extends HttpServlet {
                 }else {
                     teacher t = ts.selectbyID(Integer.parseInt(id));
                     if (t != null) {
-                        System.out.println(JSON.toJSONString(t));
                         response.setContentType("text/json;charset=utf-8");
                         response.getWriter().write(JSON.toJSONString(t));
                     }else {

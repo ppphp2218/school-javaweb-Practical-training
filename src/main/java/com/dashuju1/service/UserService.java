@@ -72,28 +72,30 @@ public class UserService {
         }
     }
 
-    public void DropUser(String id){
+    public int DropUser(String id){
         try {
             String sql = "delete from user where id=?";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
             st.setString(1,id);
-            st.executeUpdate();
+            int i = st.executeUpdate();
             DbUtils.close(con,st,rs);
+            return i;
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
         }
     }
 
-    public void UpdateUser(String tid,String tpass){
+    public int UpdateUser(String tid,String tpass){
         try {
             String sql = "UPDATE user set user_pass=? where id=?";
             con = DbUtils.getConnection();
             st = con.prepareStatement(sql);
             st.setString(1,tpass);
             st.setString(2,tid);
-            st.execute();
+            int i = st.executeUpdate();
             DbUtils.close(con,st,rs);
+            return i;
         }catch (SQLException e){
             throw new RuntimeException("数据库连接异常"+e.getMessage());
         }

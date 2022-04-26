@@ -280,7 +280,6 @@
 		}
 		</style>
 	</head>
-
 	<body>
 		<div class="top">
 			<img src="img/sdcit_logo__white.png" class="logo-img">
@@ -292,7 +291,7 @@
 				<span class="gly-ter">管理员</span>
 			</div>
 			<div class="exit">
-				<a href="logn.html"><img src="img/exit.png" class="exit-img"></a>
+				<a href="index.html"><img src="img/exit.png" class="exit-img"></a>
 			</div>
 		</div>
 		<div class="main">
@@ -378,10 +377,6 @@
 							<div class="an">
 								<button type="button" class="chaxun" onclick="chaxun()">查询</button>
 							</div>
-
-
-
-
 						</div>
 					</div>
 				</div>
@@ -411,13 +406,6 @@
 										<a>共<span class="footer-span">462</span>条</a>&nbsp;&nbsp;
 										<button type="button" class="btn btn-outline-primary" ><</button>
 										<span id="page">
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">1</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">2</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">3</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">4</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">5</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">...</button>-->
-<!--										<button type="button" class="btn btn-outline-primary" id="but1">47</button>-->
 										</span>
 										<button type="button" class="btn btn-outline-primary" >></button> &nbsp;&nbsp;
 										<select name="yeshu" id="yeshu" class="footer-xialai">
@@ -498,15 +486,6 @@
 						}
 					}
 				}
-				// axios({
-				// 	method:"get",
-				// 	url:"
-				// }).then(function (resp){
-				// 	let page = resp.data;
-				// 	for (let i = 1; i <= page;i++){
-				// 		document.getElementById("page").innerHTML = "<button type=\"button\" class=\"btn btn-outline-primary\" id=\"but"+i+"\" onclick='getinfo(+i+)'>"+i+"</button>"
-				// 	}
-				// })
 				let xhttps;
 				if (window.XMLHttpRequest) {
 					xhttps = new XMLHttpRequest();
@@ -533,25 +512,6 @@
 							}
 					}
 				}
-				// axios({
-				// 	method:"get",
-				// 	url:"http://localhost:8080/java_web_job_war/PagesServlet"
-				// }).then(function (resp){
-				// 	let list = $.parseJSON(resp.data);
-				// 	for (let i = 0; i < list.length;i++){
-				// 		let data = list[i];
-				// 		document.getElementById("table").innerHTML += "<tbody>\n" +
-				// 				"\t\t\t\t\t\t    <tr>\n" +
-				// 				"\t\t\t\t\t\t      <th scope=\"row\">"+data.tid+"</th>\n" +
-				// 				"\t\t\t\t\t\t      <td>"+data.tname+"</td>\n" +
-				// 				"\t\t\t\t\t\t      <td>"+data.tsdept+"</td>\n" +
-				// 				"\t\t\t\t\t\t      <td>"+data.tscore+"</td>\n" +
-				// 				"\t\t\t\t\t\t      <td>"+data.trank+"</td>\n" +
-				// 				"\t\t\t\t\t\t    </tr>\n" +
-				// 				"\t\t\t\t\t\t  </tbody>";
-				// 	}
-				//
-				// })
 			}
 		</script>
 	</body>
