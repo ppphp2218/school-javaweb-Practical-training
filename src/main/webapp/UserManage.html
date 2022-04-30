@@ -122,32 +122,6 @@
       right: 50px;
       top: 10px;
     }
-
-    .status {
-      width: 60px;
-      height: 20px;
-      border-radius: 4px;
-      margin-right: 60px;
-      margin-top: 15px;
-      float: left;
-      /*background-color: forestgreen; !**rgba(16, 26, 122, 100)**!*/
-      font-size: 14px;
-      text-align: center;
-      font-family: Microsoft Yahei, serif;
-    }
-    #del{
-      width:60px;
-      height:20px;
-      background:url(img/s.png) no-repeat center;
-      cursor:pointer;
-      /* 上面的代码是常规设置， 即：引入一个图片背景，设置在中心位置，大小和按钮的大小一致，以及鼠标指针为手型 */
-
-      display:block;
-      font-size:0;
-      line-height:0;
-      text-indent:-9999px;
-      /* 上面的不用多问，四句一起拷贝就可以了，大概意思就是把value值设置为0像素，也就是肉眼无法看到，但却又是存在的（用$_POST['submit_btn'] 可以证明）*/
-    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -156,85 +130,6 @@
   <!-- 引入组件库 -->
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script type="text/javascript">
-
-    // function jump() {
-    //   window.location.href = "addUser.html"
-    // }
-
-    function del(i) {
-      var id = i;
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          var res = xhr.responseText;
-          if (res == "true") {
-            alert("删除成功");
-          } else {
-            alert("删除失败");
-          }
-          window.location.reload();
-        }
-      }
-      xhr.open("get", "http://localhost:8080/java_web_job_war/UserdServlet?id=" + id, true);
-      xhr.send();
-    }
-
-
-    // function changes(i){
-    //   var id = i;
-    //   var pass = document.getElementById(id).value;
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.onreadystatechange = function () {
-    //     if (xhr.readyState == 4 && xhr.status == 200) {
-    //       var res = xhr.responseText;
-    //       if (res == "true") {
-    //         alert("修改成功");
-    //       } else {
-    //         alert("修改失败");
-    //       }
-    //       window.location.reload();
-    //     }
-    //   }
-    //   xhr.open("get", "http://localhost:8080/java_web_job_war/UsersServlet?id=" + id + "pass=" + pass, true);
-    //   xhr.send();
-    // }
-    //
-    // function change(i) {
-    //   var id = i;
-    //   document.getElementById(id).innerHTML = "请输入新密码：<input type='text' id='"+id+"'>" +
-    //           "<button onclick='changes("+id+")'>确认修改</button>";
-    // }
-
-    // window.onload = function (){
-    //   let xhttp;
-    //   if (window.XMLHttpRequest) {
-    //     xhttp = new XMLHttpRequest();
-    //   } else {
-    //     // code for IE6, IE5
-    //     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    //   }
-    //   xhttp.open("GET", "http://localhost:8080/java_web_job_war/UserServlet",true);
-    //   xhttp.send();
-    //   xhttp.onreadystatechange = function () {
-    //     const data = xhttp.responseText;
-    //     if (this.readyState == 4 && this.status == 200) {
-    //       let list = JSON.parse(data);
-    //       document.getElementById("table").innerHTML = "";
-    //       for (let i = 0; i < list.length;i++){
-    //         let user = list[i];
-    //         document.getElementById("table").innerHTML +="<tr>\n" +
-    //                 "                                        <th>"+user.user_id+"</th>\n" +
-    //                 "                                        <td>"+user.user_tno+"</td>\n" +
-    //                 "                                        <td>"+user.user_pass+"</td>\n" +
-    //                 "                                        <td id='"+user.user_id+"'>\n" +
-    //                 "                                            <button onclick='change("+user.user_id+")'>修改密码</button>" +
-    //                 "                                            <button onclick='del("+user.user_id+")'>删除用户</button>" +
-    //                 "                                        </td>\n" +
-    //                 "                                    </tr>";
-    //       }
-    //     }
-    //   }
-    // }
   </script>
   </head>
 <body>
@@ -261,45 +156,30 @@
         <div class="card-body"
              style="left: 60px;top: 306px;width: 1500px;line-height: 20px;text-align: center;">
           <div class="am-g">
-            <button type="submit" class="chaxun" value="addUser" style="float:left; margin-bottom: 10px;"
-                    onclick="jump()">
-              <span class="am-icon-plus"></span> +  添加用户
-            </button>
+            <el-row >
+              <el-button type="success" @click="adduser = true" style="float:left" plain >添加用户</el-button>
+            </el-row>
           </div>
-
+          <el-dialog
+                  title="添加用户"
+                  :visible.sync="adduser"
+                  width="30%">
+            <el-form ref="form" :model="formadd" label-width="80px">
+              <el-form-item label="用户名" prop="name">
+                <el-input v-model="formadd.name" placeholder="请输入用户名"></el-input>
+              </el-form-item>
+              <el-form-item label="密码" prop="pass">
+                <el-input v-model="formadd.pass" placeholder="请输入密码"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="adduser = false;addUser()">确定添加</el-button>
+                <el-button @click="adduser = false">取消</el-button>
+              </el-form-item>
+            </el-form>
+          </el-dialog>
           <div class="am-g">
             <div class="am-u-sm-12">
-              <form class="am-form">
-<!--                <table class="table table-striped">-->
-<!--                  <thead>-->
-<!--                    <tr>-->
-<!--                      <th class="table-id">-->
-<!--                        序号-->
-<!--                      </th>-->
-<!--                      <th class="table-title">-->
-<!--                        用户名-->
-<!--                      </th>-->
-<!--                      <th class="table-title">-->
-<!--                        密码-->
-<!--                      </th>-->
-<!--                      <th class="table-author">-->
-<!--                        操作-->
-<!--                      </th>-->
-<!--                    </tr>-->
-<!--                  </thead>-->
-<!--                  <tbody id="table" >-->
-<!--                  <tr v-for="user in users">-->
-<!--                    <th>{{user.user_id}}</th>-->
-<!--                    <td>{{user.user_tno}}</td>-->
-<!--                    <td>{{user.user_pass}}</td>-->
-<!--                    <td>-->
-<!--                          <button>修改密码</button>-->
-<!--                          <button>删除用户</button>-->
-<!--                    </td>-->
-<!--                  </tr>-->
-<!--                  </tbody>-->
-<!--                </table>-->
-                <template 18px large>
+                <template 18px large >
                   <el-table
                           :data="users"
                           style="width: 100%">
@@ -319,27 +199,34 @@
                             width="300">
                     </el-table-column>
                     <el-table-column
-                            prop=""
                             label="操作">
-                      <el-row>
-                        <el-col :span="12">
-                          <el-button type="primary" size="small" >修改用户</el-button>
-<!--                          @click="handleEdit(scope.$index, scope.row)"-->
-                        </el-col>
-                        <el-col :span="12">
-                          <el-button type="danger" size="small" >删除用户</el-button>
-<!--                          @click="handleDelete(scope.$index, scope.row)"-->
-                        </el-col>
-                      </el-row>
+                      <template slot-scope="scope">
+                          <el-button type="primary" size="small" @click="handleEdit(scope.$index, scope.row)">修改用户</el-button>
+                          <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除用户</el-button>
+                      </template>
                     </el-table-column>
                   </el-table>
                 </template>
-              </form>
+              <el-dialog
+                      title="修改用户"
+                      :visible.sync="upuser"
+                      width="30%">
+                <el-form ref="form" :model="formup" label-width="80px">
+                  <el-form-item label="用户名" prop="name">
+                    <el-input v-model="formup.name" placeholder="用户名"></el-input>
+                  </el-form-item>
+                  <el-form-item label="密码" prop="pass">
+                    <el-input v-model="formup.pass" placeholder="密码"></el-input>
+                  </el-form-item>
+                  <el-form-item>
+                    <el-button type="primary" @click="upuser = false;updateUser()">确定修改</el-button>
+                    <el-button @click="upuser = false">取消</el-button>
+                  </el-form-item>
+                </el-form>
+              </el-dialog>
             </div>
           </div>
         </div>
-        <!-- content end -->
-
       </div>
     </div>
   </div>
@@ -349,18 +236,68 @@
     el: "#app",
     data(){
       return{
-        users:[]
+        users:[],
+        adduser: false,
+        upuser: false,
+        formadd: {
+          name: '',
+          pass: '',
+        },
+        formup: {
+          name: '',
+          pass: '',
+        },
       }
     },
     mounted() {
       var thiss = this;
-      axios({
-        method: 'get',
-        url: 'http://localhost:8080/java_web_job_war/UserServlet',
-      }).then(function (resp){
-        thiss.users = resp.data;
-      })
+      thiss.shouUser();
     },
+    methods:{
+      shouUser(){
+        var thiss = this;
+        axios({
+          method: 'get',
+          url: 'http://localhost:8080/java_web_job_war/UserServlet',
+        }).then(function (resp){
+          thiss.users = resp.data;
+        })
+      },
+      addUser(){
+        var thiss = this;
+        axios({
+          method: 'get',
+          url: 'http://localhost:8080/java_web_job_war/AddUserServlet?name='+ thiss.formadd.name+"&pass=" + thiss.formadd.pass,
+        }).then(function (resp){
+          thiss.shouUser();
+        })
+      },
+      handleEdit(index, row) {
+        var thiss = this;
+        thiss.formup.name = row.user_tno;
+        thiss.formup.pass = row.user_pass;
+        this.upuser = true;
+      },
+      updateUser(){
+        var thiss = this;
+        axios({
+          method: 'get',
+          url: 'http://localhost:8080/java_web_job_war/UsersServlet?name='+ thiss.formup.name+"&pass=" + thiss.formup.pass,
+        }).then(function (resp){
+          thiss.shouUser();
+        })
+      },
+      handleDelete(index, row) {
+        var thiss = this;
+        axios({
+          method: 'get',
+          url: 'http://localhost:8080/java_web_job_war/UserdServlet?id='+ row.user_id,
+        }).then(function (resp){
+          thiss.shouUser();
+        })
+      },
+
+    }
   })
 </script>
 </body>

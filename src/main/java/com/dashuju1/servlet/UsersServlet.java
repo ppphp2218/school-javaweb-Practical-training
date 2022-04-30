@@ -11,7 +11,7 @@ import java.io.IOException;
 public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String id = request.getParameter("name");
         String password = request.getParameter("pass");
         UserService u = new UserService();
         int i = u.UpdateUser(id, password);

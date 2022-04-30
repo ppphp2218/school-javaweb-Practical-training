@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <title>首页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ol,
+    li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .top {
+      width: 1920px;
+      height: 80px;
+      background-color: rgba(16, 26, 122, 100);
+    }
+
+    .logo-img {
+      margin-left: 177px;
+      margin-top: 9px;
+    }
+
+    .sdxt {
+      margin-left: 500px;
+      margin-top: -50px;
+      width: 224px;
+      height: 19px;
+      color: rgba(255, 255, 255, 100);
+      font-size: 28px;
+      text-align: left;
+      font-family: SourceHanSansSC-regular;
+    }
+
+    .gly-img {
+      width: 30px;
+      height: 30px;
+      margin-left: 1700px;
+      margin-top: -9px;
+    }
+
+    .gly-ter {
+      margin-left: 5px;
+      width: 54px;
+      height: 26px;
+      color: rgba(255, 255, 255, 100);
+      font-size: 18px;
+      text-align: left;
+      font-family: SourceHanSansSC-regular;
+    }
+
+    .exit-img {
+      margin-top: -60px;
+      margin-left: 1830px;
+      width: 30px;
+      height: 30px;
+
+    }
+
+    .jckb {
+      margin-left: 200px;
+      margin-top: 30px;
+      width: 1500px;
+      border: .3px solid rgba(238, 238, 238, 100);
+
+
+    }
+
+    .jckb-top {
+      left: 191px;
+      top: 123px;
+      width: 97px;
+      height: 23px;
+      line-height: 23px;
+      color: rgba(16, 16, 16, 100);
+      font-size: 16px;
+      text-align: left;
+      font-family: Roboto;
+    }
+
+    .main-middle {
+      display: flex;
+    }
+
+    .chaxun {
+      width: 120px;
+      height: 30px;
+      border-radius: 4px;
+      margin-right: 60px;
+      margin-top: 15px;
+      background-color: forestgreen; /**rgba(16, 26, 122, 100)**/
+      color: rgba(255, 255, 255, 100);
+      font-size: 14px;
+      text-align: center;
+      font-family: Microsoft Yahei, serif;
+    }
+
+    .footer p {
+      margin-top: 20px;
+      width: 1400px;
+      height: 30px;
+      text-align: right;
+    }
+
+    .footer a {
+      font-size: 13px;
+    }
+
+    .header1 button {
+      position: absolute;
+      right: 50px;
+      top: 10px;
+    }
+
+    .status {
+      width: 60px;
+      height: 20px;
+      border-radius: 4px;
+      margin-right: 60px;
+      margin-top: 15px;
+      float: left;
+      /*background-color: forestgreen; !**rgba(16, 26, 122, 100)**!*/
+      font-size: 14px;
+      text-align: center;
+      font-family: Microsoft Yahei, serif;
+    }
+    #del{
+      width:60px;
+      height:20px;
+      background:url(img/s.png) no-repeat center;
+      cursor:pointer;
+      /* 上面的代码是常规设置， 即：引入一个图片背景，设置在中心位置，大小和按钮的大小一致，以及鼠标指针为手型 */
+
+      display:block;
+      font-size:0;
+      line-height:0;
+      text-indent:-9999px;
+      /* 上面的不用多问，四句一起拷贝就可以了，大概意思就是把value值设置为0像素，也就是肉眼无法看到，但却又是存在的（用$_POST['submit_btn'] 可以证明）*/
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script type="text/javascript">
+
+    // function jump() {
+    //   window.location.href = "addUser.html"
+    // }
+
+    function del(i) {
+      var id = i;
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var res = xhr.responseText;
+          if (res == "true") {
+            alert("删除成功");
+          } else {
+            alert("删除失败");
+          }
+          window.location.reload();
+        }
+      }
+      xhr.open("get", "http://localhost:8080/java_web_job_war/UserdServlet?id=" + id, true);
+      xhr.send();
+    }
+
+
+    // function changes(i){
+    //   var id = i;
+    //   var pass = document.getElementById(id).value;
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.onreadystatechange = function () {
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //       var res = xhr.responseText;
+    //       if (res == "true") {
+    //         alert("修改成功");
+    //       } else {
+    //         alert("修改失败");
+    //       }
+    //       window.location.reload();
+    //     }
+    //   }
+    //   xhr.open("get", "http://localhost:8080/java_web_job_war/UsersServlet?id=" + id + "pass=" + pass, true);
+    //   xhr.send();
+    // }
+    //
+    // function change(i) {
+    //   var id = i;
+    //   document.getElementById(id).innerHTML = "请输入新密码：<input type='text' id='"+id+"'>" +
+    //           "<button onclick='changes("+id+")'>确认修改</button>";
+    // }
+
+    // window.onload = function (){
+    //   let xhttp;
+    //   if (window.XMLHttpRequest) {
+    //     xhttp = new XMLHttpRequest();
+    //   } else {
+    //     // code for IE6, IE5
+    //     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    //   }
+    //   xhttp.open("GET", "http://localhost:8080/java_web_job_war/UserServlet",true);
+    //   xhttp.send();
+    //   xhttp.onreadystatechange = function () {
+    //     const data = xhttp.responseText;
+    //     if (this.readyState == 4 && this.status == 200) {
+    //       let list = JSON.parse(data);
+    //       document.getElementById("table").innerHTML = "";
+    //       for (let i = 0; i < list.length;i++){
+    //         let user = list[i];
+    //         document.getElementById("table").innerHTML +="<tr>\n" +
+    //                 "                                        <th>"+user.user_id+"</th>\n" +
+    //                 "                                        <td>"+user.user_tno+"</td>\n" +
+    //                 "                                        <td>"+user.user_pass+"</td>\n" +
+    //                 "                                        <td id='"+user.user_id+"'>\n" +
+    //                 "                                            <button onclick='change("+user.user_id+")'>修改密码</button>" +
+    //                 "                                            <button onclick='del("+user.user_id+")'>删除用户</button>" +
+    //                 "                                        </td>\n" +
+    //                 "                                    </tr>";
+    //       }
+    //     }
+    //   }
+    // }
+  </script>
+  </head>
+<body>
+<div class="top">
+  <img src="img/sdcit_logo__white.png" class="logo-img">
+  <div class="sdxt">
+    师德考核测评系统
+  </div>
+  <div class="gly">
+    <img src="./img/main-1.png" alt="" class="gly-img">
+    <span class="gly-ter">管理员</span>
+  </div>
+  <div class="exit">
+    <a href="index.html"><img src="img/exit.png" class="exit-img"></a>
+  </div>
+</div>
+<div class="main" id="app">
+  <div class="jckb">
+    <div class="card-header">
+      <span class="jckb-top">后台管理</span>
+    </div>
+    <div class="main-middle">
+      <div class="card">
+        <div class="card-body"
+             style="left: 60px;top: 306px;width: 1500px;line-height: 20px;text-align: center;">
+          <div class="am-g">
+            <button type="submit" class="chaxun" value="addUser" style="float:left; margin-bottom: 10px;"
+                    onclick="jump()">
+              <span class="am-icon-plus"></span> +  添加用户
+            </button>
+          </div>
+
+          <div class="am-g">
+            <div class="am-u-sm-12">
+              <form class="am-form">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="table-id">
+                        序号
+                      </th>
+                      <th class="table-title">
+                        用户名
+                      </th>
+                      <th class="table-title">
+                        密码
+                      </th>
+                      <th class="table-author">
+                        操作
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="table" >
+                  <tr v-for="user in users">
+                    <th>{{user.user_id}}</th>
+                    <td>{{user.user_tno}}</td>
+                    <td>{{user.user_pass}}</td>
+                    <td>
+                          <button>修改密码</button>
+                          <button>删除用户</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- content end -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  new Vue({
+    el: "#app",
+    data(){
+      return{
+        users:[]
+      }
+    },
+    mounted() {
+      var thiss = this;
+      axios({
+        method: 'get',
+        url: 'http://localhost:8080/java_web_job_war/UserServlet',
+      }).then(function (resp){
+        thiss.users = resp.data;
+      })
+    },
+
+  })
+</script>
+</body>
+</html>

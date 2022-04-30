@@ -11,11 +11,12 @@ import java.io.IOException;
 public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String name = request.getParameter("name");
         String password = request.getParameter("pass");
         UserService u = new UserService();
-        u.AddUser(id, password);
-        response.sendRedirect("http://localhost:8080/java_web_job_war/UserManage.html");
+        u.AddUser(name, password);
+        response.setContentType("text/html;charset=utf-8");
+        response.getWriter().write("true");
     }
 
     @Override
